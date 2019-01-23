@@ -27,9 +27,16 @@ function toProperCase (lower) {
 function ControlButton({name, active}) {
     return (
         <AppContext.Consumer>
-            <ControlButtonElem active={active}>
-                {name}
-            </ControlButtonElem>
+            {
+                ({page, setPage}) => (
+                    <ControlButtonElem 
+                        active={page === name}
+                        onClick={() => setPage(name)}
+                    >
+                        {name}
+                    </ControlButtonElem>
+                )
+            }
         </AppContext.Consumer>
     )
 }
@@ -39,8 +46,8 @@ export default function () {
         <Bar>
             <Logo>ReactCrypto</Logo>
             <div /> 
-            <ControlButtonElem  active Dashboard />
-            <ControlButtonElem Settings />
+            <ControlButton active name="dashboard" />
+            <ControlButton name="settings" />
         </Bar>
     )
 }
