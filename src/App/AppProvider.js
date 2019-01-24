@@ -14,7 +14,14 @@ export class AppProvider extends React.Component {
     }
 
     confirmFavorites(){
-        console.log('Hello')
+        this.setState({
+            firstVisit: false,
+            setPage: 'dashboard'
+        });
+
+        localStorage.setItem('reacrCrypto', JSON.stringify({
+            test: 'hello'
+        }));
     }
 
     savedSettings() {

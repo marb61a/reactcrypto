@@ -1,5 +1,17 @@
 import React from 'react';
+import {AppContext} from '../App/AppProvider';
 
-export default function Welcome () {
-    return <h1>Welcome to ReactCrypto</h1>
+export default function ({firstVisit}) {
+    return (
+        <AppContext.Consumer>
+            {
+                ({firstVisit}) => 
+                    firstVisit ? 
+                    <div>
+                        Welcome to ReactCrypto, please select your favorite coins to begin.{' '}
+                    </div> : 
+                    null
+            }
+        </AppContext.Consumer>
+    );
 }
