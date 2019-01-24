@@ -8,8 +8,13 @@ export class AppProvider extends React.Component {
         this.state = {
             page: 'dashboard',
             ...this.savedSettings(),
-            setPage: this.setPage
+            setPage: this.setPage,
+            confirmFavorites: this.confirmFavorites
         }
+    }
+
+    confirmFavorites(){
+        console.log('Hello')
     }
 
     savedSettings() {
