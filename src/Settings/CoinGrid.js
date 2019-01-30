@@ -18,8 +18,8 @@ function getCoinsToDisplay (coinList, topSection, favorites) {
 export default function ({topSection}) {
     return <AppContext.Consumer>
         {({coinList, favorites}) => <CoinGridStyled>
-            {getCoinsToDisplay(coinList, topSection).map(coinKey => 
-                <CoinTile topSection={topSection} coinKey={coinKey}/>
+            {getCoinsToDisplay(coinList, topSection, favorites).map(coinKey => 
+                <CoinTile key={coinKey} topSection={topSection} coinKey={coinKey}/>
             )}
         </CoinGridStyled>}
     </AppContext.Consumer>
