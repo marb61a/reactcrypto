@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import {DeletableTile} from '../Shared/Tile';
 
-export const CoinHeaderGridStyled = styled`
+export const CoinHeaderGridStyled = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
 `;
