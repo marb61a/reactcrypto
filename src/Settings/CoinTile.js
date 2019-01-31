@@ -16,9 +16,9 @@ function clickCoinHandler(topSection, coinKey, addCoin, removeCoin) {
 export default function ({coinKey, topSection}) {
     return <AppContext.Consumer>
         {
-            ({coinList}) => {
+            ({coinList, addCoin, removeCoin}) => {
                 let coin = coinList[coinKey];
-                const TileClass = SelectableTile;
+                let TileClass = SelectableTile;
 
                 if(topSection) {
                     TileClass = DeletableTile;
@@ -26,7 +26,9 @@ export default function ({coinKey, topSection}) {
                     TileClass = DisabledTile;
                 }
 
-                return <TileClass>
+                return <TileClass
+                    onClick={clickCoinHandler(topSection, coinKey, addCoin, removeCoin)}
+                >
                     <CoinHeaderGrid
                         topSection={topSection}
                         name={coin.CoinName}

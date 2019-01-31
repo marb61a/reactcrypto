@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 const cc = require('cryptocompare');
 // cc.setApiKey('');
@@ -16,6 +17,7 @@ export class AppProvider extends React.Component {
             ...this.savedSettings(),
             setPage: this.setPage,
             addCoin: this.addCoin,
+            removeCoin: this.removeCoin,
             confirmFavorites: this.confirmFavorites
         }
     }
@@ -35,6 +37,13 @@ export class AppProvider extends React.Component {
             favorites.push(key);
             this.setState({favorites});
         }
+    }
+
+    removeCoin = key => {
+        let favorites = [...this.state.favorites];
+        this.setState({
+            favorites: _.pull(favorites, key)
+        });
     }
 
     confirmFavorites = () => {
@@ -57,7 +66,8 @@ export class AppProvider extends React.Component {
             }
         }
 
-        return {};
+        let {favorites} = reactCryptoData;
+        return {favorites};
     }
 
     setPage = page => this.setState({page});
