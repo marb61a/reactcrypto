@@ -47,13 +47,17 @@ export class AppProvider extends React.Component {
     }
 
     confirmFavorites = () => {
+        let currentFavorite = this.state.favorites[0];
+
         this.setState({
             firstVisit: false,
-            setPage: 'dashboard'
+            setPage: 'dashboard',
+            currentFavorite
         });
 
-        localStorage.setItem('reacrCrypto', JSON.stringify({
-            test: 'hello'
+        localStorage.setItem('reactCrypto', JSON.stringify({
+            favorites: this.state.favorites,
+            currentFavorite
         }));
     }
 
