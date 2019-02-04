@@ -32,7 +32,8 @@ const handleFilter = _.debounce((inputValue, coinList, setFilterCoins) => {
         .filter(inputValue, allStringsToSearch, {})
         .map(result => result.string);
 
-    let filteredCoins = _.pickBy(coinList, (result, symkey) => {
+    let filteredCoins = _.pickBy(coinList, (result, symKey) => {
+        let coinName = result.CoinName;
         return (_.includes(fuzzyResults, symKey) || _.includes(fuzzyResults, coinName));
     });
 

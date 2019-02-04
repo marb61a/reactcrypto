@@ -32,6 +32,15 @@ export class AppProvider extends React.Component {
         this.setState({ coinList });
     }
 
+    fetchPrices = async () => {
+        let prices = await this.prices();
+        this.setState({prices});
+    }
+
+    prices = async () => {
+        
+    }
+
     addCoin = key => {
         let favorites = [...this.state.favorites];
         if(favorites.length < MAX_FAVORITES) {
@@ -47,6 +56,8 @@ export class AppProvider extends React.Component {
         });
     }
 
+    isInFavorites = key => _.includes(this.state.favorites, key);
+
     confirmFavorites = () => {
         let currentFavorite = this.state.favorites[0];
 
@@ -54,6 +65,8 @@ export class AppProvider extends React.Component {
             firstVisit: false,
             setPage: 'dashboard',
             currentFavorite
+        }, () => {
+            this.fetchPrices();
         });
 
         localStorage.setItem('reactCrypto', JSON.stringify({
