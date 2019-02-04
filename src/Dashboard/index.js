@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Page from '../Shared/Page';
+
 const ChartGrid = styled.div`
   display: grid; 
   margin-top: 20px; 
@@ -10,6 +12,8 @@ const ChartGrid = styled.div`
 
 export default function() {
     return (
-        <div></div>
+        <Page name="dashboard">
+        
+        </Page>
     )
 }
