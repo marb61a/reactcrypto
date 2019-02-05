@@ -29,7 +29,18 @@ const numberFormat = number => {
 };
 
 const PriceTileStyled = styled(SelectableTile)`
+  ${props => props.compact && css`
+    display: grid;
+    ${fontSize3}
+    grid-gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: right;
+  `}
 
+  ${props => props.currentFavorite && css `
+    ${greenBoxShadow}
+    pointer-events: none;
+  `}
 `;
 
 function ChangePercent({data}) {
@@ -43,15 +54,21 @@ function ChangePercent({data}) {
 function PriceTile({sym, data}) {
   return (
     <PriceTileStyled>
-      
+      <CoinHeaderGridStyled>
+        <div> {sym} </div>
+        <ChangePercent data={data}/>
+      </CoinHeaderGridStyled>
     </PriceTileStyled>
   )
 }
 
 export default function({price, index}) {
-    return(
-        <AppContext.Consumer>
-            
-        </AppContext.Consumer>
-    )
+  let sym = Object.keys(price)[0];
+  let data = price[sym]['EUR'];
+
+  return(
+      <AppContext.Consumer>
+          
+      </AppContext.Consumer>
+  )
 }

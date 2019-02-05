@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 
 const cc = require('cryptocompare');
-// cc.setApiKey('');
 
 export const AppContext = React.createContext();
 
@@ -19,6 +18,7 @@ export class AppProvider extends React.Component {
             addCoin: this.addCoin,
             removeCoin: this.removeCoin,
             confirmFavorites: this.confirmFavorites,
+            setCurrentFavorite: this.setCurrentFavorite,
             setFilteredCoins: this.setFilteredCoins
         };
     }
@@ -84,6 +84,17 @@ export class AppProvider extends React.Component {
         localStorage.setItem('reactCrypto', JSON.stringify({
             favorites: this.state.favorites,
             currentFavorite
+        }));
+    }
+
+    setCurrentFavorite = (sym) => {
+        this.setState({
+            currentFavorite: sym
+        });
+
+        localStorage.setItem('reactCrypto', JSON.stringify({
+            ...JSON.parse(localStorage.getItem('reactCrypto')),
+            currentFavorite: sym
         }));
     }
 
