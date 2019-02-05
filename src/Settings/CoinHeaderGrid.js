@@ -15,7 +15,7 @@ export const CoinSymbol = styled.div`
 const DeleteIcon = styled.div`
     justify-self: right;
     display: none;
-    ${DeletableTile}:hover {
+    ${DeletableTile}:hover & {
         display: block;
         color: red;
     }
