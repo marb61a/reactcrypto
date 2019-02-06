@@ -51,15 +51,30 @@ function ChangePercent({data}) {
   </JustifyRight>
 }
 
-function PriceTile({sym, data}) {
+function PriceTile({sym, data, currentFavorite, setCurrentFavorite}) {
   return (
-    <PriceTileStyled>
+    <PriceTileStyled onClick={setCurrentFavorite} currentFavorite={currentFavorite}>
       <CoinHeaderGridStyled>
         <div> {sym} </div>
         <ChangePercent data={data}/>
       </CoinHeaderGridStyled>
+      <TickerPrice>
+
+      </TickerPrice>
     </PriceTileStyled>
-  )
+  );
+}
+
+function PriceTileCompact({sym, data, currentFavorite, setCurrentFavorite}) {
+  return (
+    <PriceTileStyled onClick={setCurrentFavorite} currentFavorite={currentFavorite}>
+      <JustifyLeft> {sym} </JustifyLeft>
+      <ChangePercent data={data}/>
+      <div>
+        ${numberFormat(data.PRICE)}
+      </div>
+    </PriceTileStyled>
+  );
 }
 
 export default function({price, index}) {
