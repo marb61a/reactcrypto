@@ -61,7 +61,7 @@ function PriceTile({sym, data, currentFavorite, setCurrentFavorite}) {
         <ChangePercent data={data}/>
       </CoinHeaderGridStyled>
       <TickerPrice>
-
+        €{numberFormat(data.PRICE)}
       </TickerPrice>
     </PriceTileStyled>
   );
@@ -69,11 +69,11 @@ function PriceTile({sym, data, currentFavorite, setCurrentFavorite}) {
 
 function PriceTileCompact({sym, data, currentFavorite, setCurrentFavorite}) {
   return (
-    <PriceTileStyled onClick={setCurrentFavorite} currentFavorite={currentFavorite}>
+    <PriceTileStyled onClick={setCurrentFavorite} compact currentFavorite={currentFavorite}>
       <JustifyLeft> {sym} </JustifyLeft>
       <ChangePercent data={data}/>
       <div>
-        ${numberFormat(data.PRICE)}
+        €{numberFormat(data.PRICE)}
       </div>
     </PriceTileStyled>
   );
