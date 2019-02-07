@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment;'
+import moment from 'moment';
 
 const cc = require('cryptocompare');
 
@@ -15,6 +15,7 @@ export class AppProvider extends React.Component {
         this.state = {
             page: 'dashboard',
             favorites: ['BTC', 'ETH', 'XMR', 'DOGE'],
+            timeInterval: 'months',
             ...this.savedSettings(),
             setPage: this.setPage,
             addCoin: this.addCoin,
@@ -43,10 +44,21 @@ export class AppProvider extends React.Component {
         this.setState({prices});
     }
 
-    fetchHistorical = async => {
+    fetchHistorical = async() => {
         if(this.state.firstVisit) return;
 
         let results = await this.historical();
+        let historical = [
+            {
+                name: this.state.currentFavorite,
+                data: results.map((ticker, index) => [
+                    moment().subtract({[this.state.timeInterval]: TIME_UNITS - index}).valueOf(),
+                    ticker.EUR
+                ])
+            }
+        ];
+
+        this.setState({historical});
     }
 
     prices = async () => {
@@ -104,9 +116,12 @@ export class AppProvider extends React.Component {
         this.setState({
             firstVisit: false,
             setPage: 'dashboard',
-            currentFavorite
+            currentFavorite,
+            prices: null,
+            historical: null
         }, () => {
             this.fetchPrices();
+            this.fetchHistorical();
         });
 
         localStorage.setItem('reactCrypto', JSON.stringify({
@@ -117,8 +132,9 @@ export class AppProvider extends React.Component {
 
     setCurrentFavorite = (sym) => {
         this.setState({
-            currentFavorite: sym
-        });
+            currentFavorite: sym,
+            historical: null
+        }, this.fetchHistorical);
 
         localStorage.setItem('reactCrypto', JSON.stringify({
             ...JSON.parse(localStorage.getItem('reactCrypto')),
@@ -142,6 +158,10 @@ export class AppProvider extends React.Component {
     setPage = page => this.setState({page});
 
     setFilteredCoins = (filteredCoins) => this.setState({filteredCoins});
+
+    changeChartSelect = (value) => {
+        this.setState({timeInterval: value, historical: null}, this.fetchHistorical);
+    }
 
     render() {
         return (
