@@ -23,7 +23,8 @@ export class AppProvider extends React.Component {
             isInFavorites: this.isInFavorites,
             confirmFavorites: this.confirmFavorites,
             setCurrentFavorite: this.setCurrentFavorite,
-            setFilteredCoins: this.setFilteredCoins
+            setFilteredCoins: this.setFilteredCoins,
+            changeChartSelect: this.changeChartSelect
         };
     }
 

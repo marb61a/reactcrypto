@@ -50,16 +50,15 @@ function filterCoins(e, setFilteredCoins, coinList){
     handleFilter(inputValue, coinList, setFilteredCoins);
   }
 
-export default function () {
+export default function() {
     return (
         <AppContext.Consumer>
-            { ({setFilteredCoins, coinList}) =>
+            {({setFilteredCoins, coinList}) =>
                 <SearchGrid>
                     <h2>Search all coins</h2>
                     <SearchInput  onKeyUp={(e) => filterCoins(e, setFilteredCoins, coinList)}/>
                 </SearchGrid>
             }
-        </AppContext.Consumer>
-        
-    )
+        </AppContext.Consumer>  
+    );
 }
