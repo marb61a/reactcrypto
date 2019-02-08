@@ -43,8 +43,9 @@ function ControlButton({name}) {
                 )
             }
         </AppContext.Consumer>
-    )
+    );
 }
+
 
 export default function () {
     return (
